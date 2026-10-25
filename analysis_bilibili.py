@@ -254,7 +254,7 @@ async def video_detail(
     url: str, session: ClientSession, **kwargs
 ) -> Tuple[List[str], str]:
     try:
-        async with session.get(url) as resp:
+        async with session.get(url, headers={"User-Agent": "okhttp/4.9.3"}) as resp:
             if resp.status != 200:
                 return f"视频请求失败: HTTP {resp.status}", url
             res = (await resp.json()).get("data")
